@@ -368,13 +368,13 @@ contexts:
           pop: true
         - include: object_for_expression
         - include: comments
-        - match: '\s*({{identifer}})\s*(\=)\s*'
+        - match: '\s*({{identifer}})\s*(\=|\:)\s*'
           comment: Literal, named object key
           captures:
             1: meta.mapping.key.terraform string.unquoted.terraform
             2: keyword.operator.terraform
           push: object_key_values
-        - match: '((\").*(\"))\s*(\=)\s*'
+        - match: '((\").*(\"))\s*(\=|\:)\s*'
           comment: String object key
           captures:
             1: meta.mapping.key.terraform string.quoted.double.terraform
@@ -387,7 +387,7 @@ contexts:
           scope: punctuation.section.parens.begin.terraform
           push:
             - meta_scope: meta.mapping.key.terraform
-            - match: '(\))\s*(\=)\s*'
+            - match: '(\))\s*(\=|\:)\s*'
               captures:
                 1: punctuation.section.parens.end.terraform
                 2: keyword.operator.terraform
